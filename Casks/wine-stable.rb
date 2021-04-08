@@ -1,4 +1,4 @@
-cask "wine-stable-4" do
+cask "wine-stable" do
   version "4.0.3"
 
   url "https://dl.winehq.org/wine-builds/macosx/pool/winehq-stable-#{version}.pkg"
