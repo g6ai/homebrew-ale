@@ -1,5 +1,6 @@
 cask "wine-stable-4" do
   version "4.0.3"
+  sha256 :no_check
 
   url "https://dl.winehq.org/wine-builds/macosx/pool/winehq-stable-#{version}.pkg"
   name "WineHQ-stable"
@@ -12,11 +13,45 @@ cask "wine-stable-4" do
     regex(%r{href=.*?/winehq-stable-(\d+(?:\.\d+)*)\.pkg}i)
   end
 
+  conflicts_with cask: [
+    "wine-devel",
+    "wine-staging",
+  ]
   depends_on cask: "xquartz"
 
-  app "Wine Stable.app", target: "/Applications/Wine Stable 4.app"
+  pkg "winehq-stable-#{version}.pkg",
+      choices: [
+        {
+          "choiceIdentifier" => "choice3",
+          "choiceAttribute"  => "selected",
+          "attributeSetting" => 1,
+        },
+      ]
+  binary "#{appdir}/Wine Stable.app/Contents/Resources/start/bin/appdb"
+  binary "#{appdir}/Wine Stable.app/Contents/Resources/start/bin/winehelp"
+  binary "#{appdir}/Wine Stable.app/Contents/Resources/wine/bin/msiexec"
+  binary "#{appdir}/Wine Stable.app/Contents/Resources/wine/bin/notepad"
+  binary "#{appdir}/Wine Stable.app/Contents/Resources/wine/bin/regedit"
+  binary "#{appdir}/Wine Stable.app/Contents/Resources/wine/bin/regsvr32"
+  binary "#{appdir}/Wine Stable.app/Contents/Resources/wine/bin/wine"
+  binary "#{appdir}/Wine Stable.app/Contents/Resources/wine/bin/wine64"
+  binary "#{appdir}/Wine Stable.app/Contents/Resources/wine/bin/wineboot"
+  binary "#{appdir}/Wine Stable.app/Contents/Resources/wine/bin/winecfg"
+  binary "#{appdir}/Wine Stable.app/Contents/Resources/wine/bin/wineconsole"
+  binary "#{appdir}/Wine Stable.app/Contents/Resources/wine/bin/winedbg"
+  binary "#{appdir}/Wine Stable.app/Contents/Resources/wine/bin/winefile"
+  binary "#{appdir}/Wine Stable.app/Contents/Resources/wine/bin/winemine"
+  binary "#{appdir}/Wine Stable.app/Contents/Resources/wine/bin/winepath"
+  binary "#{appdir}/Wine Stable.app/Contents/Resources/wine/bin/wineserver"
 
-  uninstall delete:  "/Applications/Wine Stable 4.app"
+  uninstall pkgutil: [
+    "org.winehq.wine-stable",
+    "org.winehq.wine-stable-deps",
+    "org.winehq.wine-stable-deps64",
+    "org.winehq.wine-stable32",
+    "org.winehq.wine-stable64",
+  ],
+            delete:  "/Applications/Wine stable.app"
 
   caveats <<~EOS
     #{token} installs support for running 64 bit applications in Wine, which is considered experimental.
