@@ -12,20 +12,7 @@ cask "wine-stable-4" do
     regex(%r{href=.*?/winehq-stable-(\d+(?:\.\d+)*)\.pkg}i)
   end
 
-  conflicts_with cask: [
-    "wine-devel",
-    "wine-staging",
-  ]
   depends_on cask: "xquartz"
-
-  pkg "winehq-stable-#{version}.pkg",
-      choices: [
-        {
-          "choiceIdentifier" => "choice3",
-          "choiceAttribute"  => "selected",
-          "attributeSetting" => 1,
-        },
-      ]
 
   app "Wine stable.app", target: "Wine stable 4.app"
 
