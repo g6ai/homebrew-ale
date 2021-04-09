@@ -14,7 +14,9 @@ cask "wine-stable-4" do
 
   depends_on cask: "xquartz"
 
-  uninstall delete:  "/Applications/Wine stable 4.app"
+  app "Wine Stable.app", target: "Wine Stable 4.app"
+
+  uninstall delete:  "/Applications/Wine Stable 4.app"
 
   caveats <<~EOS
     #{token} installs support for running 64 bit applications in Wine, which is considered experimental.
