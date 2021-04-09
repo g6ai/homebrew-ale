@@ -14,7 +14,7 @@ cask "wine-stable-4" do
 
   depends_on cask: "xquartz"
 
-  app "Wine Stable.app", target: "Wine Stable 4.app"
+  app "/Applications/Wine Stable.app", target: "/Applications/Wine Stable 4.app"
 
   uninstall delete:  "/Applications/Wine Stable 4.app"
 
