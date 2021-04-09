@@ -14,8 +14,6 @@ cask "wine-stable-4" do
 
   depends_on cask: "xquartz"
 
-  app "Wine stable.app", target: "Wine stable 4.app"
-
   uninstall delete:  "/Applications/Wine stable 4.app"
 
   caveats <<~EOS
