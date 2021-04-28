@@ -1,4 +1,4 @@
-cask "xquartz-2-7-11" do
+cask "xquartz-2-7" do
   version "2.7.11"
   sha256 "32e50e8f1e21542b847041711039fa78d44febfed466f834a9281c44d75cd6c3"
 
