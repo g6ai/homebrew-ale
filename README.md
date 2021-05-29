@@ -1,6 +1,6 @@
 # homebrew-ale
 
-My [homebrew](https://brew.sh/) tap for some (vintage?) homebrew formulae and casks.
+My [Homebrew](https://brew.sh/) tap for some (vintage?) Homebrew formulae and Casks.
 
 Casks:
 
