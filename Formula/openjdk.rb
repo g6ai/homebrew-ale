@@ -31,6 +31,7 @@ class Openjdk < Formula
     on_macos do
     url "https://download.java.net/java/GA/jdk17.0.1/2a2082e5a09d4267845be086888add4f/12/GPL/openjdk-17.0.1_macos-x64_bin.tar.gz"
     sha256 "6ccb35800e723cabe15af60e67099d1a07c111d2d3208aa75523614dde68bee1"
+    end
   end
   def install
     boot_jdk = Pathname.pwd/"boot-jdk"
