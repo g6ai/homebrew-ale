@@ -29,21 +29,6 @@ class Openjdk < Formula
   end
   fails_with gcc: "5"
   # From https://jdk.java.net/archive/
-  resource "boot-jdk" do
-    on_macos do
-      if Hardware::CPU.arm?
-        url "https://download.java.net/java/GA/jdk17/0d483333a00540d886896bac774ff48b/35/GPL/openjdk-17_macos-aarch64_bin.tar.gz"
-        sha256 "b5bf6377aabdc935bd72b36c494e178b12186b0e1f4be50f35134daa33bda052"
-      else
-        url "https://download.java.net/java/GA/jdk16.0.2/d4a915d82b4c4fbb9bde534da945d746/7/GPL/openjdk-16.0.2_osx-x64_bin.tar.gz"
-        sha256 "e65f2437585f16a01fa8e10139d0d855e8a74396a1dfb0163294ed17edd704b8"
-      end
-    end
-    on_linux do
-      url "https://download.java.net/java/GA/jdk16.0.2/d4a915d82b4c4fbb9bde534da945d746/7/GPL/openjdk-16.0.2_linux-x64_bin.tar.gz"
-      sha256 "6c714ded7d881ca54970ec949e283f43d673a142fda1de79b646ddd619da9c0c"
-    end
-  end
   def install
     boot_jdk = Pathname.pwd/"boot-jdk"
     resource("boot-jdk").stage boot_jdk
@@ -78,8 +63,6 @@ class Openjdk < Formula
         --with-fontconfig=#{HOMEBREW_PREFIX}
       ]
     end
-    chmod 0755, "configure"
-    system "./configure", *args
     ENV["MAKEFLAGS"] = "JOBS=#{ENV.make_jobs}"
     system "make", "images"
     if OS.mac?
