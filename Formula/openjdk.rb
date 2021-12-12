@@ -69,6 +69,8 @@ class Openjdk < Formula
         --with-fontconfig=#{HOMEBREW_PREFIX}
       ]
     end
+    chmod 0755, "configure"
+    system "./configure", *args
     ENV["MAKEFLAGS"] = "JOBS=#{ENV.make_jobs}"
     system "make", "images"
     if OS.mac?
